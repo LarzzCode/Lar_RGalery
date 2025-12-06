@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles opsional bisa ditaruh di bawah sini */
+body {
+    background-color: #fdfbf7; /* Warna background cream kita */
+}
