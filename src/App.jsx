@@ -1,26 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, X, Music, Smile } from 'lucide-react';
+import { ArrowLeft, X, Music, Smile, Download } from 'lucide-react';
 
 // --- CONFIG ---
-const MUSIC_URL = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+// Ganti "lagu-kita.mp3" sesuai nama file yang kamu taruh di folder PUBLIC
+const MUSIC_URL = "/lagu-kita.mp3"; 
 
 // --- PANDA ASSETS ---
 const PANDAS = [
-  "image_4.png", // [0] Minum Cola
-  "image_8.png", // [1] Kostum Sapi
-  "image_5.png", // [2] Topi Pink
-  "image_9.png", // [3] Malu-malu (Motivator)
-  "image_7.png", // [4] Main HP
-  "image_6.png", // [5] Minum Cola Lagi
+  "image_4.png", "image_8.png", "image_5.png", 
+  "image_9.png", "image_7.png", "image_6.png"
 ];
 
 // --- DATA: MOOD OPTIONS ---
 const MOODS = [
-  { id: 'chill', label: 'Santuy', icon: PANDAS[0], color: 'bg-blue-100' },
-  { id: 'playful', label: 'Iseng', icon: PANDAS[1], color: 'bg-orange-100' },
-  { id: 'shy', label: 'Kangen', icon: PANDAS[3], color: 'bg-pink-100' },
-  { id: 'busy', label: 'Sibuk', icon: PANDAS[4], color: 'bg-green-100' },
+  { id: 'chill', label: '', icon: PANDAS[0], color: 'bg-blue-100' },
+  { id: 'playful', label: '', icon: PANDAS[1], color: 'bg-orange-100' },
+  { id: 'shy', label: '', icon: PANDAS[3], color: 'bg-pink-100' },
+  { id: 'busy', label: '', icon: PANDAS[4], color: 'bg-green-100' },
 ];
 
 // --- DATA: MOTIVASI ---
@@ -39,32 +36,93 @@ const QUOTES = [
 // --- DATA: ALBUMS ---
 const albumsData = [
   {
-    id: 'ch1', title: "Awal Ketemu", subtitle: "Deg-degan ih!", color: "bg-pink-100", border: "border-pink-300",
-    cover: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=500&q=75",
+    id: 'ch1', title: "BC", subtitle: "Sipaling baru ketemu!", color: "bg-pink-100", border: "border-pink-300",
+    cover: "https://ik.imagekit.io/shs2lyltu/Photos/BC/Image_%20(1).jpg",
     photos: [
-      { id: 1, src: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=500&q=75", caption: "Hai kamu! 👋" },
-      { id: 2, src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500&q=75", caption: "Senyum manis 🍬" },
+      { id: 1, src: "https://ik.imagekit.io/shs2lyltu/Photos/BC/Image_%20(1).jpg", caption: "Canggung amat wkwk" },
+      { id: 2, src: "https://ik.imagekit.io/shs2lyltu/Photos/BC/Image_%20(2).jpg", caption: "Muka gweh gak keliatan" },
+      { id: 6, src: "https://ik.imagekit.io/shs2lyltu/Photos/BC/Image_%20(6).jpg", caption: "Muka gweh gak keliatan" },
+      { id: 7, src: "https://ik.imagekit.io/shs2lyltu/Photos/BC/Image_%20(7).jpg", caption: "Muka gweh gak keliatan" },
+      { id: 8, src: "https://ik.imagekit.io/shs2lyltu/Photos/BC/Image_%20(8).jpg", caption: "Bawa ember buat apaan kak" },
+      { id: 9, src: "https://ik.imagekit.io/shs2lyltu/Photos/BC/Image_%20(9).jpg", caption: "Ngintip dikit" },
+      { id: 10, src: "https://ik.imagekit.io/shs2lyltu/Photos/BC/Image_%20(10).jpg", caption: "Bjirr wkwk" },
+      { id: 11, src: "https://ik.imagekit.io/shs2lyltu/Photos/BC/Image_%20(11).jpg", caption: "Tauu lah" },
+      { id: 12, src: "https://ik.imagekit.io/shs2lyltu/Photos/BC/Image_%20(12).jpg", caption: "Pura-pura liatt hp" },
+      { id: 13, src: "https://ik.imagekit.io/shs2lyltu/Photos/BC/Image_%20(13).jpg", caption: "Pura-pura liatt hp" },
     ]
   },
   {
-    id: 'ch2', title: "Jalan-Jalan", subtitle: "Nge-date teruus", color: "bg-blue-100", border: "border-blue-300",
-    cover: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500&q=75",
+    id: 'ch2', title: "Photoboth And Nonton 🎥", subtitle: "Ngemall ceritanya", color: "bg-blue-100", border: "border-blue-300",
+    cover: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(6).jpg",
     photos: [
-      { id: 3, src: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500&q=75", caption: "Otw nih 🚗" },
+      { id: 1, src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(6).jpg", caption: "Perayaan mati Rasa, Ada yang nangis nih nonton film ini" },
+      { id: 2, src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(5).jpg", caption: "Photoboth ceritanya`" },
+      { id: 3, src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(4).jpg", caption: "Photoboth ceritanya" },
+      { id: 4, src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(3).jpg", caption: "Photoboth ceritanya" },
+      { id: 5, src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(2).jpg", caption: "Photoboth ceritanya" },
+      { id: 6, src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(1).jpg", caption: "Photoboth ceritanya" },
     ]
   },
   {
-    id: 'ch3', title: "Kulineran", subtitle: "Diet mulai besok", color: "bg-orange-100", border: "border-orange-300",
-    cover: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&q=75",
+    id: 'ch3', title: "Badminton🏸", subtitle: "Olahraga guys biar sehat", color: "bg-orange-100", border: "border-orange-300",
+    cover: "https://ik.imagekit.io/shs2lyltu/Photos/BADMINTON/Image_%20%20(1).jpeg",
     photos: [
-      { id: 4, src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&q=75", caption: "Nyam! 🍔" },
+      { id: 1, src: "https://ik.imagekit.io/shs2lyltu/Photos/BADMINTON/Image_%20%20(1).jpeg", caption: "Jangan lupa olahraga" },
+      { id: 2, src: "https://ik.imagekit.io/shs2lyltu/Photos/BADMINTON/Image_%20%20(1).JPG", caption: "Gelap bgt muka gweh" },
+      { id: 3, src: "https://ik.imagekit.io/shs2lyltu/Photos/BADMINTON/Image_%20%20(3).JPG", caption: "Ini ezze game sih" },
+      { id: 4, src: "https://ik.imagekit.io/shs2lyltu/Photos/BADMINTON/Image_%20%20(4).JPG", caption: "Lawannya kurang seru" },
+    ]
+  },
+  {
+    id: 'ch4', title: "Kondangan ", subtitle: "Lumayan makan gratis hehe", color: "bg-yellow-100", border: "border-yellow-300",
+    cover: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(14).JPG",
+    photos: [
+      { id: 1, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(5).jpg", caption: "Hehe" },
+      { id: 2, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(6).jpg", caption: "pissssss" },
+      { id: 3, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(4).jpg", caption: "Apasih ni orang" },
+      { id: 4, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(7).jpg", caption: "Pisss lagi" },
+      { id: 5, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(10).JPG", caption: "Yaa begitulah" },
+      { id: 6, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(12).JPG", caption: "Apaansi pa ngeliatin bae" },
+      { id: 7, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(13).JPG", caption: "Seorang CEO di tunjuk2 gasopan bgt" },
+      { id: 8, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(15).JPG", caption: "Ciss" },
+      { id: 9, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(14).JPG", caption: "Ciss lagi ah" },
+    ]
+  },
+  {
+    id: 'ch5', title: "Caffee Kuningann", subtitle: "Sebelum meninggalkan BC ceritanya", color: "bg-green-100", border: "border-green-300",
+    cover: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(20).jpg",
+    photos: [
+      { id: 1, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(1).jpg", caption: "Cisss" },
+      { id: 2, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(17).JPG", caption: "Ini enakk si beneran" },
+      { id: 3, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(19).jpg", caption: "Melihat mountain" },
+      { id: 4, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(2).JPG", caption: "Pass malem kerensih" },
+      { id: 5, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(18).jpg", caption: "Omaiigattt🫨" },
+      { id: 6, src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(3).jpg", caption: "Omaigatttt lagiii" },
+    ]
+  },
+  {
+    id: 'ch6', title: "Suttt🤫", subtitle: "Gabolehh dibukaaa", color: "bg-pink-100", border: "border-pink-300",
+    cover: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(8).jpg",
+    photos: [
+      { id: 1, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(1).jpg", caption: "" },
+      { id: 2, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(9).JPG", caption: "" },
+      { id: 3, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(12).JPG", caption: "" },
+      { id: 4, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(2).JPG", caption: "" },
+      { id: 5, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(10).JPG", caption: "" },
+      { id: 6, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(3).JPG", caption: "" },
+      { id: 7, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(3).JPG", caption: "" },
+      { id: 8, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(14).JPG", caption: "" },
+      { id: 9, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(15).jpg", caption: "" },
+      { id: 10, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(5).JPG", caption: "" },
+      { id: 11, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(4).JPG", caption: "" },
+      { id: 12, src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(8).jpg", caption: "APAAAA NIHHH" },
     ]
   },
 ];
 
 // --- COMPONENTS ---
 
-// 1. Global Styles (Animasi Diperlambat agar tidak pusing)
+// 1. Global Styles
 const GlobalStyles = () => (
   <style>{`
     @keyframes float { 
@@ -72,11 +130,9 @@ const GlobalStyles = () => (
       50% { transform: translateY(-15px) rotate(5deg); } 
       100% { transform: translateY(0px) rotate(0deg); } 
     }
-    /* Durasi animasi diperlambat (10s, 12s, 14s) agar lebih calm */
     .animate-float { animation: float 10s ease-in-out infinite; }
     .animate-float-delayed { animation: float 12s ease-in-out 1s infinite; }
     .animate-float-slow { animation: float 14s ease-in-out 2s infinite; }
-    
     body { font-family: 'Fredoka', sans-serif; background-color: #FFFBF0; }
   `}</style>
 );
@@ -98,11 +154,32 @@ const PandaCrowd = ({ activeIcon }) => (
   </div>
 );
 
+// 3. Music Player (Load Local File)
 const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(new Audio(MUSIC_URL));
-  useEffect(() => { audioRef.current.loop = true; return () => audioRef.current.pause(); }, []);
-  const togglePlay = () => { isPlaying ? audioRef.current.pause() : audioRef.current.play(); setIsPlaying(!isPlaying); };
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    // Inisialisasi Audio dengan URL lokal
+    audioRef.current = new Audio(MUSIC_URL);
+    audioRef.current.loop = true;
+    
+    // Cleanup saat unmount
+    return () => {
+      if (audioRef.current) audioRef.current.pause();
+    };
+  }, []);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(e => console.log("Audio play failed (user interaction needed):", e));
+    }
+    setIsPlaying(!isPlaying);
+  };
+
   return (
     <button onClick={togglePlay} className={`fixed bottom-6 right-6 z-50 p-3 rounded-full border-4 border-white shadow-lg transition-transform active:scale-90 ${isPlaying ? 'bg-pink-400 rotate-12' : 'bg-gray-300'}`}>
       <Music size={24} className="text-white" />
@@ -110,19 +187,15 @@ const MusicPlayer = () => {
   );
 };
 
-// 3. PANDA MOTIVATOR (Durasi Diperpanjang)
+// 4. Panda Motivator
 const PandaMotivator = () => {
   const [quote, setQuote] = useState(null);
   const timeoutRef = useRef(null);
 
   const showMotivation = () => {
-    // Clear timeout lama jika user klik cepat berkali-kali
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-
     const random = QUOTES[Math.floor(Math.random() * QUOTES.length)];
     setQuote(random);
-    
-    // Durasi diperpanjang jadi 8 DETIK (8000ms)
     timeoutRef.current = setTimeout(() => setQuote(null), 8000);
   };
 
@@ -136,9 +209,7 @@ const PandaMotivator = () => {
              exit={{ opacity: 0, scale: 0.5 }}
              className="mb-3 bg-white p-4 rounded-2xl rounded-bl-none shadow-xl border-4 border-pink-200 max-w-[220px] relative z-50 origin-bottom-left"
            >
-              <p className="font-['Fredoka'] text-gray-600 text-sm font-bold leading-relaxed">
-                "{quote}"
-              </p>
+              <p className="font-['Fredoka'] text-gray-600 text-sm font-bold leading-relaxed">"{quote}"</p>
            </motion.div>
          )}
        </AnimatePresence>
@@ -152,20 +223,18 @@ const PandaMotivator = () => {
           <img src={PANDAS[3]} className="w-full h-full object-cover" alt="panda motivator" />
        </motion.button>
        
-       <span className="absolute -bottom-6 left-1 bg-white/50 px-2 py-0.5 rounded-full text-[10px] font-bold text-gray-500 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+       <span className="absolute -bottom-5 left-1 bg-white/50 px-2 py-0.5 rounded-full text-[10px] font-bold text-gray-500 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
           Klik aku! 🐼
        </span>
     </div>
   );
 };
 
-// 4. Mood Section (Layout Responsive)
+// 5. Mood Section
 const MoodSection = ({ currentMood, setMood }) => (
   <div className="mb-8">
     <div className="text-center mb-4">
-      <span className="bg-white/50 px-4 py-1 rounded-full text-xs font-bold text-gray-500 border border-gray-100">
-        Mood hari ini? 👇
-      </span>
+      <span className="bg-white/50 px-4 py-1 rounded-full text-xs font-bold text-gray-500 border border-gray-100">Mood hari ini? 👇</span>
     </div>
     <div className="flex justify-center gap-2 md:gap-4 flex-wrap">
       {MOODS.map((m) => (
@@ -187,7 +256,7 @@ const MoodSection = ({ currentMood, setMood }) => (
   </div>
 );
 
-// 5. Album Card
+// 6. Album Card
 const AlbumCard = ({ album, onClick }) => (
   <motion.div whileTap={{ scale: 0.95 }} onClick={() => onClick(album)} className="relative cursor-pointer group">
     <div className="bg-white p-3 pb-6 md:pb-8 rounded-2xl border-4 border-white shadow-[4px_4px_0px_rgba(0,0,0,0.05)] group-hover:shadow-[8px_8px_0px_rgba(244,114,182,1)] group-hover:-translate-y-1 transition-all duration-200 h-full">
@@ -203,7 +272,7 @@ const AlbumCard = ({ album, onClick }) => (
   </motion.div>
 );
 
-// 6. Album View
+// 7. Album View
 const AlbumView = ({ album, onBack, onPhotoClick }) => {
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="min-h-screen relative z-40">
@@ -228,13 +297,34 @@ const AlbumView = ({ album, onBack, onPhotoClick }) => {
   );
 };
 
-// 7. Lightbox
+// 8. Lightbox (Dengan Tombol Download)
 const Lightbox = ({ photo, onClose }) => {
   if (!photo) return null;
+  
   return (
     <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4" onClick={onClose}>
-      <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="bg-white p-3 rounded-2xl max-w-md w-full border-4 border-pink-200 shadow-2xl relative" onClick={(e) => e.stopPropagation()}>
-        <button onClick={onClose} className="absolute -top-4 -right-4 bg-red-400 text-white p-2 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform"><X size={20}/></button>
+      <motion.div 
+        initial={{ scale: 0.8 }} animate={{ scale: 1 }} 
+        className="bg-white p-3 rounded-2xl max-w-md w-full border-4 border-pink-200 shadow-2xl relative" 
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Tombol Close */}
+        <button onClick={onClose} className="absolute -top-4 -right-4 bg-red-400 text-white p-2 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform z-10">
+            <X size={20}/>
+        </button>
+
+        {/* Tombol Download (Fitur Baru) */}
+        <a 
+          href={photo.src} 
+          download={`panda-memory-${photo.id}`} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="absolute -top-4 -left-4 bg-blue-400 text-white p-2 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform z-10"
+          title="Download Foto"
+        >
+            <Download size={20} />
+        </a>
+
         <img src={photo.src} className="w-full rounded-xl" alt="detail" />
         <p className="text-center mt-4 text-xl font-bold text-pink-500">{photo.caption}</p>
       </motion.div>
@@ -259,12 +349,10 @@ function App() {
         {!activeAlbum ? (
           <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10 pt-10 px-4">
             
-            {/* CONTAINER UTAMA (RESPONSIVE WIDTH) */}
             <div className="max-w-lg md:max-w-3xl lg:max-w-5xl mx-auto pb-24">
                 <div className="bg-white/70 backdrop-blur-md rounded-[30px] p-6 md:p-10 shadow-sm border-4 border-white">
-                    
                     <div className="text-center mb-8">
-                      <h1 className="text-3xl md:text-5xl font-bold text-gray-800 mb-2 drop-shadow-sm">Panda <span className="text-pink-400">Journal</span></h1>
+                      <h1 className="text-3xl md:text-5xl font-bold text-gray-800 mb-2 drop-shadow-sm">Our <span className="text-pink-400">Memories</span></h1>
                       <p className="text-xs md:text-sm text-gray-500 font-medium">Tempat kenangan kita tersimpan 🍯</p>
                     </div>
 
@@ -272,15 +360,12 @@ function App() {
 
                     <div className="flex items-center gap-2 mb-4 px-2 mt-8">
                       <Smile className="text-pink-400 w-5 h-5" />
-                      <h2 className="font-bold text-gray-700 text-lg">Album Foto</h2>
+                      <h2 className="font-bold text-gray-700 text-lg">Our Albums</h2>
                     </div>
                     
-                    {/* GRID ALBUM RESPONSIVE: 2 kolom di HP, 3 kolom di Tablet/PC */}
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                       {albumsData.map((album) => (<AlbumCard key={album.id} album={album} onClick={setActiveAlbum} />))}
                     </div>
-
-                    
                 </div>
             </div>
 
