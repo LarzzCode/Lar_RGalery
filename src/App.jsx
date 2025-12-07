@@ -272,7 +272,7 @@ const AlbumCard = ({ album, onClick }) => (
   <motion.div whileTap={{ scale: 0.95 }} onClick={() => onClick(album)} className="relative cursor-pointer group">
     <div className="bg-white p-3 pb-6 md:pb-8 rounded-2xl border-4 border-white shadow-[4px_4px_0px_rgba(0,0,0,0.05)] hover:shadow-[8px_8px_0px_rgba(244,114,182,1)] hover:-translate-y-1 transition-all duration-200 h-full">
       <div className={`h-32 md:h-48 overflow-hidden rounded-xl border-4 ${album.border} ${album.color} relative`}>
-        <img src={getOptimizedImageUrl(album.cover, 400)} alt={album.title} loading="lazy" className="w-full h-full object-cover" />
+        <img src={getOptimizedImageUrl(album.cover, 400)} alt={album.title} className="w-full h-full object-cover" />
       </div>
       <div className="mt-4 text-center">
         <h3 className="text-sm md:text-lg font-bold text-gray-700">{album.title}</h3>
@@ -315,7 +315,7 @@ const AlbumView = ({ album, onBack, onPhotoClick }) => {
                    </>
                  ) : (
                    // KOMPONEN GAMBAR (GRID)
-                   <img src={getOptimizedImageUrl(item.src, 500)} loading="lazy" className="w-full h-full object-cover" alt="memory" />
+                   <img src={getOptimizedImageUrl(item.src, 500)}  className="w-full h-full object-cover" alt="memory" />
                  )}
                </div>
                <p className="text-center mt-3 text-gray-500 font-medium text-xs md:text-sm truncate px-2">✨ {item.caption} ✨</p>
