@@ -96,7 +96,7 @@ const albumsData = [
     cover: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(6).jpg",
     photos: [
       { id: 1, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(6).jpg", caption: "Perayaan mati Rasa, Ada yang nangis nih nonton film ini" },
-      { id: 7, type: 'video', src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Vid_(1).MP4/ik-video.mp4?updatedAt=1765082378541", caption: "Seorang CEO me-rating film" },
+      { id: 7, type: 'video', src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Vid_(1).MP4/ik-video.mp4", caption: "Seorang CEO me-rating film" },
       { id: 2, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(5).jpg", caption: "Photoboth ceritanya`" },
       { id: 3, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(4).jpg", caption: "Photoboth ceritanya" },
       { id: 4, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/PHOTOBOTH/Image_%20(3).jpg", caption: "Photoboth ceritanya" },
@@ -125,9 +125,9 @@ const albumsData = [
       { id: 5, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(10).JPG", caption: "Yaa begitulah" },
       { id: 6, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(12).JPG", caption: "Apaansi pa ngeliatin bae" },
       { id: 7,type: 'image',  src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(13).JPG", caption: "Seorang CEO di tunjuk2 gasopan bgt" },
-      { id: 8,type: 'image',  src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(15).JPG", caption: "Ciss" },
+      { id: 8, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(15).JPG", caption: "Ciss" },
       { id: 9, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/CAFFE/Image_%20(14).JPG", caption: "Ciss lagi ah" },
-      { id: 10,type: 'image',  src: "https://ik.imagekit.io/shs2lyltu/Photos/Kondangan/Image__%20(2).JPG", caption: "First kondangan ceritanya" },
+      { id: 10, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/Kondangan/Image__%20(2).JPG", caption: "First kondangan ceritanya" },
       { id: 11, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/Kondangan/Image__%20(1).JPG", caption: "Kangen bu Ruci😔" },
     ]
   },
