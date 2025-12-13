@@ -155,6 +155,11 @@ const albumsData = [
     id: 'ch7', title: "Suttt🤫", subtitle: "Gabolehh dibukaaa", color: "bg-pink-100", border: "border-pink-300",
     cover: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(8).jpg",
     photos: [
+      { id: 13, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_New%20(1).JPG", caption: "" },
+      { id: 14, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_New%20(2).JPG", caption: "" },
+      { id: 15, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_New%20(3).JPG", caption: "" },
+      { id: 16, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_New%20(4).JPG", caption: "Absen ceunah" },
+      { id: 17, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_New%20(5).jpg", caption: "Fish Eye🐟" },
       { id: 1, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(1).jpg", caption: "" },
       { id: 2, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(9).JPG", caption: "" },
       { id: 3, type: 'image', src: "https://ik.imagekit.io/shs2lyltu/Photos/Image_%20(12).JPG", caption: "" },
@@ -304,7 +309,7 @@ const AlbumView = ({ album, onBack, onPhotoClick }) => {
             >
                <div className="w-full aspect-square rounded-md overflow-hidden relative bg-gray-100">
                  {item.type === 'video' ? (
-                   // KOMPONEN VIDEO (GRID)
+                   // KOMPONEN VIDEO (GRID
                    <>
                     <VideoThumbnail src={item.src} poster={item.poster} />
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
